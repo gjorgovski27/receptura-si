@@ -1,0 +1,105 @@
+@page
+@model CookingAssistantAPI.Pages.LoginModel
+@{
+    ViewData["Title"] = "Log In";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Login Specific CSS -->
+    <link href="/css/login.css?v=@DateTime.Now.Ticks" rel="stylesheet" />
+</head>
+<body>
+    <div class="card" style="margin: 50px auto; width: 400px;">
+        <div class="card-header text-center">
+            Log In
+        </div>
+        <div class="card-body">
+            <form id="loginForm" onsubmit="return handleLogin(event)">
+                <!-- Email Field -->
+                <div class="mb-3">
+                    <input type="email" id="Email" name="Email" class="form-control" placeholder="Username" required />
+                </div>
+
+                <!-- Password Field with Show/Hide Button -->
+                <div class="mb-3 input-group">
+                    <input type="password" id="Password" name="Password" class="form-control" placeholder="Password" required />
+                    <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                        Show
+                    </button>
+                </div>
+
+                <!-- Login Button -->
+                <button type="submit" class="btn btn-primary w-100">LOGIN</button>
+            </form>
+
+            <!-- Sign-Up Link -->
+            <p class="text-muted mt-3 text-center">
+                Not registered? <a href="/SignUp">Create an account</a>
+            </p>
+
+            <!-- Message Display -->
+            <p id="message" class="text-center text-danger mt-3"></p>
+        </div>
+    </div>
+
+    <!-- JavaScript for Show/Hide Password and Login Handling -->
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordField = document.getElementById('Password');
+        const messageField = document.getElementById('message');
+
+        togglePassword.addEventListener('click', () => {
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+            togglePassword.textContent = type === 'password' ? 'Show' : 'Hide';
+        });
+
+        async function handleLogin(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            const email = document.getElementById('Email').value;
+            const password = document.getElementById('Password').value;
+
+            const loginRequest = {
+                email: email,
+                password: password
+            };
+
+            try {
+                const response = await fetch('http://localhost:5203/api/users/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(loginRequest)
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    const userId = data.user.userId;
+
+                    // Redirect to HomePage with userId
+                    window.location.href = `/HomePage/${userId}`;
+                } else {
+                    const errorText = await response.text();
+                    messageField.textContent = `Error: ${errorText}`;
+                }
+            } catch (error) {
+                messageField.textContent = `Request failed: ${error.message}`;
+            }
+        }
+    </script>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

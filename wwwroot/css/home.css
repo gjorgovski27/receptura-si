@@ -1,0 +1,108 @@
+/* home.css - Specific styles for the Home page */
+body {
+    background-color: #f5f5f5; /* Light background for the home page */
+}
+
+.navbar {
+    background-color: #28a745; /* Green navbar (match btn-primary color) */
+}
+
+.nav-link {
+    color: white !important;
+}
+
+.container-fluid {
+    margin-top: 20px;
+}
+
+.card {
+    width: 350px;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: #fff;
+}
+
+.card-header {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.card-body {
+    padding: 10px;
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.btn-primary {
+    background-color: #28a745;
+    border: none;
+    width: 100%;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.btn-primary:hover {
+    background-color: #218838;
+}
+
+.text-muted {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+.text-muted a {
+    color: #28a745;
+    text-decoration: none;
+}
+
+.text-muted a:hover {
+    text-decoration: underline;
+}
+
+/* Added styles for the 'Create Recipe' button */
+.btn-create-recipe {
+    background-color: #28a745;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-create-recipe:hover {
+    background-color: #218838;
+    text-decoration: none;
+}
+
+/* Added styles for the 'Logout' button */
+.btn-logout {
+    background-color: #dc3545; /* Bootstrap's complementary red color for the logout button */
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* Add space between icon and text */
+    text-decoration: none;
+}
+
+.btn-logout:hover {
+    background-color: #c82333; /* Slightly darker red for hover state */
+    text-decoration: none;
+}
+
+.btn-logout img {
+    height: 1rem; /* Ensure the icon is the same size as the text */
+    width: 1rem;
+}

@@ -1,0 +1,114 @@
+@page "{userId:int}" 
+@model CookingAssistantAPI.Pages.CreateRecipeModel
+@{
+    ViewData["Title"] = "Create Recipe";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Create Recipe Specific CSS -->
+    <link href="/css/createrecipe.css?v=@DateTime.Now.Ticks" rel="stylesheet" />
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Create a New Recipe</h2>
+
+        <form id="createRecipeForm" enctype="multipart/form-data">
+            <!-- Title Field -->
+            <div class="mb-3">
+                <label for="Title" class="form-label">Recipe Title</label>
+                <input type="text" id="Title" name="Title" class="form-control" required />
+            </div>
+
+            <!-- Description Field -->
+            <div class="mb-3">
+                <label for="Description" class="form-label">Description</label>
+                <input type="text" id="Description" name="Description" class="form-control" />
+            </div>
+
+            <!-- Ingredients Field -->
+            <div class="mb-3">
+                <label for="Ingredients" class="form-label">Ingredients</label>
+                <textarea id="Ingredients" name="Ingredients" class="form-control" required></textarea>
+            </div>
+
+            <!-- Instructions Field -->
+            <div class="mb-3">
+                <label for="Instructions" class="form-label">Instructions</label>
+                <textarea id="Instructions" name="Instructions" class="form-control" required></textarea>
+            </div>
+
+            <!-- Cooking Time Field -->
+            <div class="mb-3">
+                <label for="CookingTime" class="form-label">Cooking Time (in minutes)</label>
+                <input type="number" id="CookingTime" name="CookingTime" class="form-control" />
+            </div>
+
+            <!-- Serving Size Field -->
+            <div class="mb-3">
+                <label for="ServingSize" class="form-label">Serving Size</label>
+                <input type="number" id="ServingSize" name="ServingSize" class="form-control" />
+            </div>
+
+            <!-- Image Upload -->
+            <div class="mb-3">
+                <label for="ImageFile" class="form-label">Recipe Image (Optional)</label>
+                <input type="file" id="ImageFile" name="ImageFile" class="form-control" accept="image/*" />
+            </div>
+
+            <input type="hidden" id="CreatedByUserId" name="CreatedByUserId" value="@Model.UserId" />
+            <button type="button" id="createRecipeButton" class="btn btn-primary" onclick="createRecipe()">Create Recipe</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript to handle form submission -->
+    <script>
+        async function createRecipe() {
+            const form = document.getElementById('createRecipeForm');
+            const formData = new FormData(form);
+
+            // Get UserId from hidden input
+            const userId = document.getElementById('CreatedByUserId').value;
+            formData.append('CreatedByUserId', userId);
+
+            // Disable the button to prevent multiple submissions
+            const createRecipeButton = document.getElementById('createRecipeButton');
+            createRecipeButton.disabled = true;
+            createRecipeButton.innerText = "Creating...";
+
+            try {
+                const response = await fetch('http://localhost:5203/api/recipes/add', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    alert('Recipe created successfully!');
+                    window.location.href = `/HomePage/${userId}`; // Redirect back to home page
+                } else {
+                    const errorText = await response.text();
+                    alert('Error creating recipe: ' + errorText);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred while creating the recipe.');
+            } finally {
+                // Enable the button again after submission attempt
+                createRecipeButton.disabled = false;
+                createRecipeButton.innerText = "Create Recipe";
+            }
+        }
+    </script>
+</body>
+</html>

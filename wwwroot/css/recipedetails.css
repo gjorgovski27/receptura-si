@@ -1,0 +1,199 @@
+/* recipedetails.css - Specific styles for the Recipe Details page */
+
+/* Overall Page Styling */
+body {
+    background-color: #f5f5f5; /* Light background to match the home page */
+    color: #333; /* General text color for readability */
+}
+
+/* Container for Recipe Details */
+.container {
+    background: #fff; /* White background for the recipe container */
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px; /* Constrain the maximum width for readability */
+    margin: 0 auto; /* Center align the container */
+}
+
+/* Recipe Image */
+.img-fluid {
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px; /* Consistent rounded corners for the image */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for a lifted look */
+    margin-bottom: 20px; /* Space between image and content below */
+}
+
+/* Section Headings */
+h4 {
+    color: #28a745; /* Use the same green as buttons for section headers */
+    font-weight: bold;
+    margin-top: 30px; /* Add top margin for space before each section */
+}
+
+/* Description, Ingredients, Instructions */
+p, ul, ol {
+    font-size: 1rem; /* Consistent font size */
+    line-height: 1.6; /* Improved readability */
+}
+
+ul, ol {
+    padding-left: 20px; /* Align lists with margin */
+}
+
+li {
+    margin-bottom: 10px; /* Space between items in the list */
+}
+
+/* Ratings Section */
+.rating-section {
+    margin-top: 20px; /* Margin to add space above the rating section */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.rating-stars {
+    display: inline-flex;
+    cursor: pointer;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.rating-stars img {
+    width: 2rem;
+    height: 2rem;
+    margin: 0 2px;
+    transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out; /* Smooth animation for scaling and filter changes */
+}
+
+.rating-stars img:hover,
+.rating-stars img:hover ~ img {
+    transform: scale(1.1); /* Slightly enlarge the stars on hover for better feedback */
+    filter: brightness(1.5); /* Make the stars brighter on hover */
+}
+
+.rating-stars img.selected {
+    filter: brightness(1.5); /* Brighten the star when selected */
+}
+
+.rating-stars img.selected:hover,
+.rating-stars img.selected:hover ~ img {
+    transform: scale(1.1); /* Maintain hover effect for selected stars */
+}
+
+/* Buttons (reuse button styling) */
+.btn-primary {
+    background-color: #28a745;
+    border: none;
+    width: auto; /* Allow the button to size based on text */
+    border-radius: 5px;
+    padding: 10px 20px; /* Consistent button padding */
+    font-size: 1rem;
+}
+
+.btn-primary:hover {
+    background-color: #218838;
+}
+
+/* Delete Button Styling */
+.btn-danger {
+    background-color: #dc3545; /* Bootstrap's complementary red color */
+    border: none;
+    width: auto;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+}
+
+.btn-danger:hover {
+    background-color: #c82333; /* Slightly darker red for hover state */
+}
+
+/* Comments Section */
+.comments-section {
+    margin-top: 30px;
+    padding: 20px;
+    background: #fff; /* Match container background */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for the lifted look */
+}
+
+.comments-section h4 {
+    color: #28a745;
+    font-weight: bold;
+    margin-bottom: 15px; /* Space below section header */
+}
+
+/* New Comment Input Box */
+#newCommentContent {
+    resize: none; /* Disable resizing */
+    border-radius: 5px;
+    border: 1px solid #ccc; /* Light border */
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 10px; /* Space below input box */
+    font-size: 1rem;
+    line-height: 1.6; /* Improved readability */
+}
+
+.btn-comment-post {
+    background-color: #28a745;
+    border: none;
+    padding: 8px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-comment-post:hover {
+    background-color: #218838; /* Darken button on hover */
+}
+
+/* Comment List */
+#commentsContainer {
+    margin-top: 20px;
+}
+
+.comment-item {
+    margin-bottom: 15px; /* Space between comments */
+    padding: 15px;
+    background: #f9f9f9; /* Light background for individual comments */
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Light shadow for each comment */
+}
+
+.comment-item .comment-header {
+    font-weight: bold;
+    color: #28a745; /* Consistent color for user name */
+    margin-bottom: 5px;
+}
+
+.comment-item .comment-content {
+    font-size: 1rem;
+    color: #333; /* Main text color */
+    line-height: 1.6; /* Improved readability */
+}
+
+.comment-item .comment-date {
+    font-size: 0.9rem;
+    color: #777; /* Subtle color for date */
+    margin-top: 5px; /* Space above date */
+}
+
+/* Delete Comment Button Styling */
+.btn-comment-delete {
+    background-color: #dc3545; /* Same red as delete recipe button */
+    border: none;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    color: #fff;
+    margin-top: 10px; /* Space above the delete button */
+}
+
+.btn-comment-delete:hover {
+    background-color: #c82333; /* Slightly darker red for hover state */
+}

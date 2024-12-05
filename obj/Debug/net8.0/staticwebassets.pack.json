@@ -1,0 +1,53 @@
+{
+  "Files": [
+    {
+      "Id": "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/wwwroot/css/createrecipe.css",
+      "PackagePath": "staticwebassets/css/createrecipe.css"
+    },
+    {
+      "Id": "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/wwwroot/css/home.css",
+      "PackagePath": "staticwebassets/css/home.css"
+    },
+    {
+      "Id": "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/wwwroot/css/login.css",
+      "PackagePath": "staticwebassets/css/login.css"
+    },
+    {
+      "Id": "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/wwwroot/css/recipedetails.css",
+      "PackagePath": "staticwebassets/css/recipedetails.css"
+    },
+    {
+      "Id": "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/wwwroot/css/signup.css",
+      "PackagePath": "staticwebassets/css/signup.css"
+    },
+    {
+      "Id": "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/wwwroot/images/logout_icon.svg",
+      "PackagePath": "staticwebassets/images/logout_icon.svg"
+    },
+    {
+      "Id": "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/wwwroot/images/star_unused.svg",
+      "PackagePath": "staticwebassets/images/star_unused.svg"
+    },
+    {
+      "Id": "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/wwwroot/images/star_used.svg",
+      "PackagePath": "staticwebassets/images/star_used.svg"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.CookingAssistantAPI.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.CookingAssistantAPI.props",
+      "PackagePath": "build\\CookingAssistantAPI.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.CookingAssistantAPI.props",
+      "PackagePath": "buildMultiTargeting\\CookingAssistantAPI.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.CookingAssistantAPI.props",
+      "PackagePath": "buildTransitive\\CookingAssistantAPI.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
