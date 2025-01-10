@@ -6,6 +6,8 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using CookingAssistantAPI.Models;
+using System.Text.Json;
 
 namespace CookingAssistantAPI.Controllers
 {
@@ -62,29 +64,37 @@ public class LoginRequest
 
         // 2. Signup Endpoint
         [HttpPost("signup")]
-        public async Task<IActionResult> SignUp([FromBody] User newUser)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+public async Task<IActionResult> SignUp([FromBody] UserCreateModel userModel)
+{
+    if (!ModelState.IsValid)
+        return BadRequest(ModelState);
 
-            var existingUser = await _context.Users.AnyAsync(u => u.UserEmail == newUser.UserEmail);
-            if (existingUser)
-                return Conflict(new { Error = "Email is already registered." });
+    var existingUser = await _context.Users.AnyAsync(u => u.UserEmail == userModel.UserEmail);
+    if (existingUser)
+        return Conflict(new { Error = "Email is already registered." });
 
-            // Hash the password before saving
-            newUser.UserPassword = _passwordHasher.HashPassword(newUser, newUser.UserPassword);
+    var newUser = new User
+    {
+        UserName = userModel.UserName,
+        UserFullName = userModel.UserFullName,
+        UserEmail = userModel.UserEmail,
+        UserPassword = _passwordHasher.HashPassword(null!, userModel.UserPassword),
+        UserPhone = userModel.UserPhone
+    };
 
-            _context.Users.Add(newUser);
-            await _context.SaveChangesAsync();
+    _context.Users.Add(newUser);
+    await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(SignUp), new { id = newUser.UserId }, new
-            {
-                newUser.UserId,
-                newUser.UserName,
-                newUser.UserFullName,
-                newUser.UserEmail
-            });
-        }
+    return CreatedAtAction(nameof(SignUp), new { id = newUser.UserId }, new
+    {
+        newUser.UserId,
+        newUser.UserName,
+        newUser.UserFullName,
+        newUser.UserEmail
+    });
+}
+
+
 
         // Helper Method to Generate JWT Token
         private string GenerateJwtToken(User user)
