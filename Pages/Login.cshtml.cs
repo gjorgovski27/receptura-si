@@ -22,48 +22,57 @@ namespace CookingAssistantAPI.Pages
         {
         }
 
-       public async Task<IActionResult> OnPostSubmit()
-{
-    if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password))
-    {
-        Message = "Email and password are required.";
-        return Page();
-    }
-
-    using var httpClient = new HttpClient();
-    var loginRequest = new { Email, Password };
-    var content = new StringContent(JsonSerializer.Serialize(loginRequest), Encoding.UTF8, "application/json");
-
-    var response = await httpClient.PostAsync("http://localhost:5203/api/users/login", content);
-
-    if (response.IsSuccessStatusCode)
-    {
-        Message = "Login successful!";
-
-        // Extracting the userId from the response
-        var responseContent = await response.Content.ReadAsStringAsync();
-        var loginResponse = JsonSerializer.Deserialize<LoginResponseDto>(responseContent);
-
-        if (loginResponse != null && loginResponse.UserData != null)
+        public async Task<IActionResult> OnPostSubmit()
         {
-            int userId = loginResponse.UserData.UserId;
+            // Hardcoded admin credentials for Dashboard access
+            const string adminEmail = "mihail@gmail.com";
+            const string adminPassword = "olympuszeus";
 
-            // Redirect to HomePage with userId
-            return RedirectToPage("/HomePage", new { userId = userId });
+            if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password))
+            {
+                Message = "Email and password are required.";
+                return Page();
+            }
+
+            if (Email?.Trim() == adminEmail && Password?.Trim() == adminPassword)
+            {
+                return RedirectToPage("/Dashboard");
+            }
+
+
+            using var httpClient = new HttpClient();
+            var loginRequest = new { Email, Password };
+            var content = new StringContent(JsonSerializer.Serialize(loginRequest), Encoding.UTF8, "application/json");
+
+            var response = await httpClient.PostAsync("http://localhost:5203/api/users/login", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                Message = "Login successful!";
+
+                // Extracting the userId from the response
+                var responseContent = await response.Content.ReadAsStringAsync();
+                var loginResponse = JsonSerializer.Deserialize<LoginResponseDto>(responseContent);
+
+                if (loginResponse != null && loginResponse.UserData != null)
+                {
+                    int userId = loginResponse.UserData.UserId;
+
+                    // Redirect to HomePage with userId
+                    return RedirectToPage("/HomePage", new { userId = userId });
+                }
+                else
+                {
+                    Message = "Error extracting user information from response.";
+                }
+            }
+            else
+            {
+                Message = "Error: " + await response.Content.ReadAsStringAsync();
+            }
+
+            return Page();
         }
-        else
-        {
-            Message = "Error extracting user information from response.";
-        }
-    }
-    else
-    {
-        Message = "Error: " + await response.Content.ReadAsStringAsync();
-    }
-
-    return Page();
-}
-
 
         // Helper class for deserializing the response
         public class LoginResponseDto

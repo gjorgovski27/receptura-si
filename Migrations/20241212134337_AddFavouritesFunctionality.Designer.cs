@@ -3,6 +3,7 @@ using System;
 using CookingAssistantAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CookingAssistantAPI.Migrations
 {
     [DbContext(typeof(CookingAssistantDbContext))]
-    partial class CookingAssistantDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241212134337_AddFavouritesFunctionality")]
+    partial class AddFavouritesFunctionality
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.0");
@@ -66,38 +69,6 @@ namespace CookingAssistantAPI.Migrations
                         .IsUnique();
 
                     b.ToTable("Favourites");
-                });
-
-            modelBuilder.Entity("CookingAssistantAPI.Data.News", b =>
-                {
-                    b.Property<int>("ArticleId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("ArticleContent")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ArticleDescription")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("TEXT");
-
-                    b.Property<byte[]>("ArticleImage")
-                        .HasColumnType("BLOB");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
-                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
-
-                    b.Property<string>("ImageMimeType")
-                        .HasMaxLength(50)
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("ArticleId");
-
-                    b.ToTable("News");
                 });
 
             modelBuilder.Entity("CookingAssistantAPI.Data.Rating", b =>

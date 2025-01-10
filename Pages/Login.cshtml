@@ -18,6 +18,9 @@
     <link href="/css/login.css?v=@DateTime.Now.Ticks" rel="stylesheet" />
 </head>
 <body>
+
+    <div class="app-name">Receptura.si</div>
+
     <div class="card" style="margin: 50px auto; width: 400px;">
         <div class="card-header text-center">
             Log In
@@ -66,8 +69,18 @@
         async function handleLogin(event) {
             event.preventDefault(); // Prevent the form from submitting normally
 
-            const email = document.getElementById('Email').value;
-            const password = document.getElementById('Password').value;
+            const email = document.getElementById('Email').value.trim();
+            const password = document.getElementById('Password').value.trim();
+
+            // Hardcoded admin credentials for Dashboard access
+            const adminEmail = "mihail@gmail.com";
+            const adminPassword = "olympuszeus";
+
+            // Check if admin credentials are entered
+            if (email === adminEmail && password === adminPassword) {
+                window.location.href = '/Dashboard'; // Redirect to the Dashboard
+                return;
+            }
 
             const loginRequest = {
                 email: email,

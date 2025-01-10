@@ -22,19 +22,43 @@
 <body>
     <div class="container mt-5">
         <!-- Recipe Title, Average Rating, and Image -->
-        <div class="text-center mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="mb-3">@Model.Recipe.Title</h2>
-            <div class="rating-section">
-                <p>Average Rating: @Model.RecipeAverageRating / 5</p>
-                <div class="rating-stars" id="rating-stars">
-                    @for (int i = 1; i <= 5; i++)
-                    {
-                        <img id="star-@i" src="/images/star_unused.svg" data-value="@i" alt="Star @i">
-                    }
+            <div class="d-flex align-items-center">
+                <div class="rating-section me-4">
+                    <p>Average Rating: @Model.RecipeAverageRating / 5</p>
+                    <div class="rating-stars" id="rating-stars">
+                        @for (int i = 1; i <= 5; i++)
+                        {
+                            <img id="star-@i" src="/images/star_unused.svg" data-value="@i" alt="Star @i">
+                        }
+                    </div>
                 </div>
+                <button class="favourite-btn" id="favouriteButton" onclick="toggleFavourite()">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="38px" width="38px" viewBox="0 0 471.701 471.701">
+                        <linearGradient id="gradientColor">
+                            <stop offset="5%" stop-color="#7eaaff"></stop>
+                            <stop offset="95%" stop-color="#ff48fb"></stop>
+                        </linearGradient>
+                        <g>
+                            <path d="M433.601,67.001c-24.7-24.7-57.4-38.2-92.3-38.2s-67.7,13.6-92.4,38.3l-12.9,12.9l-13.1-13.1   
+                                    c-24.7-24.7-57.6-38.4-92.5-38.4c-34.8,0-67.6,13.6-92.2,38.2c-24.7,24.7-38.3,57.5-38.2,92.4c0,34.9,13.7,67.6,38.4,92.3   
+                                    l187.8,187.8c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-3.9l188.2-187.5c24.7-24.7,38.3-57.5,38.3-92.4   
+                                    C471.801,124.501,458.301,91.701,433.601,67.001z M414.401,232.701l-178.7,178l-178.3-178.3c-19.6-19.6-30.4-45.6-30.4-73.3   
+                                    s10.7-53.7,30.3-73.2c19.5-19.5,45.5-30.3,73.1-30.3c27.7,0,53.8,10.8,73.4,30.4l22.6,22.6c5.3,5.3,13.8,5.3,19.1,0l22.4-22.4   
+                                    c19.6-19.6,45.7-30.4,73.3-30.4c27.6,0,53.6,10.8,73.2,30.3c19.6,19.6,30.3,45.6,30.3,73.3   
+                                    C444.801,187.101,434.001,213.101,414.401,232.701z"></path>
+                        </g>
+                    </svg>
+                </button>
             </div>
+        </div>
+
+        <!-- Recipe Image -->
+        <div class="text-center mb-4">
             <img src="/api/recipes/@Model.Recipe.RecipeId/image" class="img-fluid rounded" alt="@Model.Recipe.Title image">
         </div>
+
 
         <!-- Recipe Description -->
         <div class="mb-4">
@@ -56,12 +80,12 @@
         <!-- Recipe Instructions -->
         <div class="mb-4">
             <h4>Instructions</h4>
-            <ol>
+            <ul>
                 @foreach (var instruction in Model.Recipe.Instructions.Split('\n'))
                 {
                     <li>@instruction</li>
                 }
-            </ol>
+            </ul>
         </div>
 
         <!-- Comments Section -->
@@ -81,180 +105,218 @@
                 </div>
             </div>
         </div>
-
-        <!-- Delete Recipe Button (Only if the user is allowed to delete it) -->
-        @if (Model.CanDelete)
-        {
-            <div class="mb-4 text-center">
-                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete Recipe</button>
-            </div>
-        }
+        @if (Model.UserId == Model.Recipe.CreatedByUserId)
+{
+    <div class="text-center mb-4">
+        <button class="btn btn-danger" onclick="openDeleteRecipeModal()">Delete Recipe</button>
+    </div>
+}
     </div>
 
-    <!-- Delete Confirmation Modal -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Are you sure you want to delete this recipe?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                    <button type="button" class="btn btn-success" onclick="confirmDeleteRecipe(@Model.Recipe.RecipeId)">Yes</button>
-                </div>
-            </div>
+    <!-- Notification Container -->
+    <div id="notificationContainer"></div>
+
+   <!-- Delete Confirmation Modal -->
+    <div class="delete-modal" id="deleteModal">
+        <div class="delete-modal-content">
+            <h4>Are you sure you want to delete this comment?</h4>
+            <button class="btn btn-cancel" onclick="closeDeleteModal()">Cancel</button>
+        <button class="btn btn-confirm" onclick="deleteComment()">Delete</button>
         </div>
     </div>
 
-    <!-- Bootstrap JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+     <!-- Delete Recipe Confirmation Modal -->
+    <div class="delete-modal" id="deleteRecipeModal">
+        <div class="delete-modal-content">
+            <h4>Are you sure you want to delete this recipe?</h4>
+            <button class="btn btn-cancel" onclick="closeDeleteRecipeModal()">Cancel</button>
+            <button class="btn btn-danger" onclick="deleteRecipe()">Delete</button>
+        </div>
+    </div>
 
-    <!-- JavaScript to handle rating, comments, and delete recipe -->
+    <!-- JavaScript -->
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const stars = document.querySelectorAll(".rating-stars img");
-            let currentUserRating = @(Model.UserRating.HasValue ? Model.UserRating.Value.ToString() : "0");
+        // Function to show a styled notification
+        function showNotification(message, isError = false) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            if (isError) {
+                notification.classList.add('error');
+            }
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.classList.add('show'), 10);
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => notification.remove(), 300);
+            }, 4000);
+        }
 
-            // Load comments on page load
-            loadComments();
-        });
-
-        // Function to post a new comment
+        // Post a new comment
         async function postComment() {
             const content = document.getElementById("newCommentContent").value.trim();
             if (!content) {
-                alert("Comment cannot be empty.");
+                showNotification("Comment cannot be empty.", true);
                 return;
             }
 
             try {
                 const response = await fetch(`/api/comments/add`, {
-                    method: 'POST',
+                    method: "POST",
                     headers: {
-                        'Content-Type': 'application/json'
+                        "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
-                        recipeId: @Model.RecipeId,
+                        recipeId: @Model.Recipe.RecipeId,
                         userId: @Model.UserId,
-                        content: content
-                    })
+                        content: content,
+                    }),
                 });
 
                 if (response.ok) {
-                    alert("Comment posted successfully.");
-                    document.getElementById("newCommentContent").value = ""; // Clear the text area
+                    showNotification("Comment posted successfully.");
+                    document.getElementById("newCommentContent").value = ""; // Clear text area
                     loadComments(); // Reload comments
                 } else {
-                    console.error('Error posting comment:', await response.text());
-                    alert("Error posting comment. Please try again.");
+                    showNotification("Error posting comment. Please try again.", true);
                 }
             } catch (error) {
-                console.error('Error:', error);
-                alert("An error occurred while posting your comment.");
+                console.error("Error:", error);
+                showNotification("An error occurred while posting your comment.", true);
             }
         }
 
-        // Function to load all comments for the current recipe
+        // Load comments
         async function loadComments() {
+    try {
+        const response = await fetch(`/api/comments/${@Model.RecipeId}`);
+        if (response.status === 204) {
+            document.getElementById("commentsContainer").innerHTML = "<p>No comments yet. Be the first to comment!</p>";
+            return;
+        }
+
+        if (response.ok) {
+            const comments = await response.json();
+            const commentsContainer = document.getElementById("commentsContainer");
+            commentsContainer.innerHTML = ""; // Clear existing comments
+            comments.forEach(comment => {
+                const commentItem = document.createElement("div");
+                commentItem.classList.add("list-group-item", "comment-item");
+                commentItem.innerHTML = `
+                    <p class="comment-header"><strong>${comment.userName}</strong> <small class="text-muted">on ${new Date(comment.createdAt).toLocaleString()}</small></p>
+                    <p>${comment.content}</p>
+                    ${
+                        comment.userId === @Model.UserId
+                        ? `<button class="btn btn-sm btn-danger mt-1" onclick="openDeleteModal(${comment.commentId})">Delete</button>`
+                        : ''
+                    }
+                `;
+                commentsContainer.appendChild(commentItem);
+            });
+        } else {
+            console.error('Failed to fetch comments:', await response.text());
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+let deleteRecipeId = @Model.Recipe.RecipeId;
+
+        function openDeleteRecipeModal() {
+            document.getElementById("deleteRecipeModal").classList.add("show");
+        }
+
+        function closeDeleteRecipeModal() {
+            document.getElementById("deleteRecipeModal").classList.remove("show");
+        }
+
+        async function deleteRecipe() {
             try {
-                const response = await fetch(`/api/comments/${@Model.RecipeId}`);
-                
-                if (response.status === 204) {
-                    // No content, simply clear the comments section or provide a message
-                    document.getElementById("commentsContainer").innerHTML = "<p>No comments yet. Be the first to comment!</p>";
-                    return;
-                }
+                const response = await fetch(`/api/recipes/${deleteRecipeId}`, { method: 'DELETE' });
 
                 if (response.ok) {
-                    const comments = await response.json();
-                    const commentsContainer = document.getElementById("commentsContainer");
-                    commentsContainer.innerHTML = ""; // Clear existing comments
-
-                    comments.forEach(comment => {
-                        const commentItem = document.createElement("div");
-                        commentItem.classList.add("list-group-item", "comment-item");
-                        commentItem.innerHTML = `
-                            <p class="comment-header"><strong>${comment.userName}</strong> <small class="text-muted">on ${new Date(comment.createdAt).toLocaleString()}</small></p>
-                            <p>${comment.content}</p>
-                            ${comment.userId === @Model.UserId ? `<button class="btn btn-sm btn-danger mt-1" onclick="deleteComment(${comment.commentId})">Delete</button>` : ''}
-                        `;
-                        commentsContainer.appendChild(commentItem);
-                    });
+                    showNotification("Recipe deleted successfully.");
+                    window.location.href = `/HomePage/@Model.UserId`; // Redirect to user's homepage
                 } else {
-                    console.error('Failed to fetch comments:', await response.text());
+                    showNotification("Error deleting recipe. Please try again.", true);
                 }
             } catch (error) {
                 console.error('Error:', error);
+                showNotification("An error occurred while deleting the recipe.", true);
+            } finally {
+                closeDeleteRecipeModal();
             }
         }
 
-        // Function to delete a comment
-        async function deleteComment(commentId) {
-            if (!confirm("Are you sure you want to delete this comment?")) {
-                return;
-            }
-
+        // Toggle favourite
+        async function toggleFavourite() {
             try {
-                const response = await fetch(`/api/comments/${commentId}`, {
-                    method: 'DELETE'
+                const removeResponse = await fetch(`/api/favourites/remove`, {
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ recipeId: @Model.RecipeId, userId: @Model.UserId })
                 });
 
-                if (response.ok) {
-                    alert("Comment deleted successfully.");
-                    loadComments(); // Reload comments
+                if (removeResponse.ok) {
+                    showNotification('Recipe removed from favourites.');
+                } else if (removeResponse.status === 404) {
+                    const addResponse = await fetch(`/api/favourites/add`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ recipeId: @Model.RecipeId, userId: @Model.UserId })
+                    });
+
+                    if (addResponse.ok) {
+                        showNotification('Recipe added to favourites.');
+                    } else {
+                        showNotification('Error adding to favourites. Please try again.', true);
+                    }
                 } else {
-                    console.error('Error deleting comment:', await response.text());
-                    alert("Error deleting comment. Please try again.");
+                    showNotification('Error toggling favourite status. Please try again.', true);
                 }
             } catch (error) {
                 console.error('Error:', error);
-                alert("An error occurred while deleting the comment.");
+                showNotification('An error occurred while toggling favourite status.', true);
             }
         }
 
-        // Function to highlight stars
-        function highlightStars(rating) {
-            const stars = document.querySelectorAll(".rating-stars img");
-            stars.forEach(star => {
-                const starValue = parseInt(star.getAttribute("data-value"));
-                star.src = (starValue <= rating) ? "/images/star_used.svg" : "/images/star_unused.svg";
-            });
+        // Delete a comment
+        let deleteCommentId = null; // Variable to store the comment ID for deletion
+
+function openDeleteModal(commentId) {
+    deleteCommentId = commentId; // Set the comment ID for deletion
+    document.getElementById("deleteModal").classList.add("show"); // Show the modal
+}
+
+function closeDeleteModal() {
+    deleteCommentId = null; // Clear the stored comment ID
+    document.getElementById("deleteModal").classList.remove("show"); // Hide the modal
+}
+
+// Confirm and delete the comment
+async function deleteComment() {
+    if (!deleteCommentId) return; // If no comment ID is set, do nothing
+
+    try {
+        const response = await fetch(`/api/comments/${deleteCommentId}`, { method: 'DELETE' });
+
+        if (response.ok) {
+            showNotification("Comment deleted successfully."); // Show success notification
+            loadComments(); // Reload the comments section
+        } else {
+            showNotification("Error deleting comment. Please try again.", true); // Show error notification
         }
+    } catch (error) {
+        console.error('Error:', error);
+        showNotification("An error occurred while deleting the comment.", true); // Show error notification
+    } finally {
+        closeDeleteModal(); // Close the modal after the action
+    }
+}
 
-        // Rating functionality
-        document.querySelectorAll(".rating-stars img").forEach(star => {
-            star.addEventListener("mouseover", function () {
-                const hoverValue = parseInt(this.getAttribute("data-value"));
-                highlightStars(hoverValue);
-            });
 
-            star.addEventListener("mouseout", function () {
-                if (currentUserRating > 0) {
-                    highlightStars(currentUserRating); // Revert to user's current rating
-                } else {
-                    highlightStars(0); // Remove highlight if no rating
-                }
-            });
-
-            star.addEventListener("click", async function () {
-                const ratingValue = parseInt(this.getAttribute("data-value"));
-                currentUserRating = ratingValue; // Update the user's current rating locally
-
-                const success = await rateRecipe(ratingValue);
-                if (success) {
-                    highlightStars(ratingValue);
-                    alert("Rating submitted successfully.");
-                } else {
-                    alert("Error submitting rating. Please try again.");
-                }
-            });
-        });
-
-        // Function to rate the recipe
+        // Rate a recipe
         async function rateRecipe(ratingValue) {
             try {
                 const response = await fetch(`/api/ratings/add`, {
@@ -269,37 +331,63 @@
                     })
                 });
 
-                if (!response.ok) {
+                if (response.ok) {
+                    showNotification("Rating submitted successfully.");
+                    return true;
+                } else {
                     console.error('Response status:', response.status);
                     console.error('Response body:', await response.text());
+                    showNotification("Error submitting rating. Please try again.", true);
                     return false;
                 }
-
-                return true;
             } catch (error) {
                 console.error('Error occurred during rating submission:', error);
+                showNotification("An error occurred while submitting your rating.", true);
                 return false;
             }
         }
 
-        // JavaScript to delete recipe
-        async function confirmDeleteRecipe(recipeId) {
-            try {
-                const response = await fetch(`/api/recipes/${recipeId}`, {
-                    method: 'DELETE'
-                });
-
-                if (response.ok) {
-                    alert("Recipe deleted successfully.");
-                    window.location.href = `/HomePage/@Model.UserId`;
-                } else {
-                    alert("Error deleting recipe. Please try again.");
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert("An error occurred while deleting the recipe.");
-            }
+        // Highlight stars for rating
+        function highlightStars(rating) {
+            const stars = document.querySelectorAll(".rating-stars img");
+            stars.forEach(star => {
+                const starValue = parseInt(star.getAttribute("data-value"));
+                star.src = (starValue <= rating) ? "/images/star_used.svg" : "/images/star_unused.svg";
+            });
         }
+
+        // Handle rating stars
+        document.querySelectorAll(".rating-stars img").forEach(star => {
+            star.addEventListener("mouseover", function () {
+                const hoverValue = parseInt(this.getAttribute("data-value"));
+                highlightStars(hoverValue);
+            });
+
+            star.addEventListener("mouseout", function () {
+                if (currentUserRating > 0) {
+                    highlightStars(currentUserRating);
+                } else {
+                    highlightStars(0);
+                }
+            });
+
+            star.addEventListener("click", async function () {
+                const ratingValue = parseInt(this.getAttribute("data-value"));
+                currentUserRating = ratingValue;
+
+                const success = await rateRecipe(ratingValue);
+                if (success) {
+                    highlightStars(ratingValue);
+                }
+            });
+        });
+
+        // Load comments on page load
+        document.addEventListener("DOMContentLoaded", function () {
+            loadComments();
+        });
+        // Attach confirmDeleteComment to the confirm button
+        document.getElementById("confirmDeleteButton").onclick = confirmDeleteComment;
     </script>
 </body>
 

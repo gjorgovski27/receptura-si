@@ -24,9 +24,11 @@ namespace CookingAssistantAPI.Pages
         // Properties to hold data for the Home page
         public string? UserName { get; set; } // Nullable to allow for initialization if user not found
         public List<Recipe> MyRecipes { get; set; } = new List<Recipe>();
-        public List<Recipe> TopRatedRecipes { get; set; } = new List<Recipe>(); // List of top-rated recipes
+        public List<Recipe> TopRatedRecipes { get; set; } = new List<Recipe>();
+        public List<Recipe> FavouriteRecipes { get; set; } = new List<Recipe>(); // List of favourite recipes
+        public List<News> NewsArticles { get; set; } = new List<News>(); // List of news articles
 
-        // OnGetAsync method to fetch user data, their recipes, and top-rated recipes based on userId
+        // OnGetAsync method to fetch user data, their recipes, top-rated recipes, favourites, and news articles
         public async Task OnGetAsync()
         {
             // Fetch the user's name
@@ -39,12 +41,24 @@ namespace CookingAssistantAPI.Pages
                 MyRecipes = await _context.Recipes
                     .Where(r => r.CreatedByUserId == UserId)
                     .ToListAsync();
+
+                // Fetch user's favourite recipes
+                FavouriteRecipes = await _context.Favourites
+                    .Where(f => f.UserId == UserId)
+                    .Include(f => f.Recipe) // Include recipe details
+                    .Select(f => f.Recipe)
+                    .ToListAsync();
             }
 
             // Fetch top-rated recipes (average rating >= 4)
             TopRatedRecipes = await _context.Recipes
                 .Include(r => r.Ratings)
                 .Where(r => r.Ratings.Any() && r.Ratings.Average(rt => rt.Value) >= 4)
+                .ToListAsync();
+
+            // Fetch all news articles sorted by date (newest first)
+            NewsArticles = await _context.News
+                .OrderByDescending(n => n.CreatedAt)
                 .ToListAsync();
         }
     }

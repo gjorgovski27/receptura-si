@@ -15,7 +15,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Home Specific CSS -->
-    <link href="/css/home.css?v=@DateTime.Now.Ticks" rel="stylesheet" />  <!-- Using home.css for HomePage styles -->
+    <link href="/css/home.css?v=@DateTime.Now.Ticks" rel="stylesheet" />
 </head>
 <body>
     <div class="container mt-5">
@@ -42,54 +42,125 @@
             </div>
         </div>
 
-        <!-- User's Recipes Section -->
-        <div class="row mt-4">
-            <h3>My Recipes</h3>
-            <div class="d-flex flex-wrap">
-                @foreach (var recipe in Model.MyRecipes)
-                {
-                    <a href="@Url.Page("/RecipeDetails", new { recipeId = recipe.RecipeId, userId = @Model.UserId })" class="text-decoration-none text-dark">
-                        <div class="card" style="width: 18rem; margin: 10px;">
-                            <img src="/api/recipes/@recipe.RecipeId/image" class="card-img-top" alt="@recipe.Title image">
-                            <div class="card-body">
-                                <h5 class="card-title">@recipe.Title</h5>
-                            </div>
-                        </div>
-                    </a>
-                }
-            </div>
-        </div>
-
-        <!-- Top Rated Recipes Section -->
-        <div class="row mt-4">
-            <h3>Top Rated Recipes</h3>
-            <div class="d-flex flex-wrap">
-                @foreach (var recipe in Model.TopRatedRecipes)
-                {
-                    <a href="@Url.Page("/RecipeDetails", new { recipeId = recipe.RecipeId, userId = @Model.UserId })" class="text-decoration-none text-dark">
-                        <div class="card" style="width: 18rem; margin: 10px;">
-                            <img src="/api/recipes/@recipe.RecipeId/image" class="card-img-top" alt="@recipe.Title image">
-                            <div class="card-body">
-                                <h5 class="card-title">@recipe.Title</h5>
-                                <p class="card-text">Average Rating: @recipe.Ratings.Average(rt => rt.Value) / 5</p>
-                            </div>
-                        </div>
-                    </a>
-                }
-            </div>
-        </div>
+        <!-- My Recipes Section -->
+<div class="row mt-4">
+    <h3>My Recipes</h3>
+    <div class="d-flex flex-wrap">
+        @foreach (var recipe in Model.MyRecipes)
+        {
+            <a href="@Url.Page("/RecipeDetails", new { recipeId = recipe.RecipeId, userId = @Model.UserId })" class="text-decoration-none text-dark">
+                <div class="card" style="width: 18rem; margin: 10px;">
+                    <img src="/api/recipes/@recipe.RecipeId/image" class="card-img-top" alt="@recipe.Title image">
+                    <div class="card-body">
+                        <h5 class="card-title">@recipe.Title</h5>
+                    </div>
+                </div>
+            </a>
+        }
     </div>
+</div>
 
-    <!-- JavaScript function for redirecting to CreateRecipe page -->
+<!-- Top Rated Recipes Section -->
+<div class="row mt-4">
+    <h3>Top Rated Recipes</h3>
+    <div class="d-flex flex-wrap">
+        @foreach (var recipe in Model.TopRatedRecipes)
+        {
+            <a href="@Url.Page("/RecipeDetails", new { recipeId = recipe.RecipeId, userId = @Model.UserId })" class="text-decoration-none text-dark">
+                <div class="card" style="width: 18rem; margin: 10px;">
+                    <img src="/api/recipes/@recipe.RecipeId/image" class="card-img-top" alt="@recipe.Title image">
+                    <div class="card-body">
+                        <h5 class="card-title">@recipe.Title</h5>
+                        <p class="card-text">Average Rating: @recipe.Ratings.Average(rt => rt.Value) / 5</p>
+                    </div>
+                </div>
+            </a>
+        }
+    </div>
+</div>
+
+<!-- My Favourites Section -->
+<div class="row mt-4">
+    <h3>My Favourites</h3>
+    <div class="d-flex flex-wrap" id="favouritesContainer">
+        <!-- JavaScript will dynamically load the favourites here -->
+    </div>
+</div>
+
+
+<!-- News Section -->
+<div class="container mt-4">
+    <h3 class="mb-3">Latest News</h3>
+    <div class="d-flex flex-wrap justify-content-start">
+        @foreach (var news in Model.NewsArticles)
+        {
+            <a href="@Url.Page("/NewsDetails", new { articleId = news.ArticleId, userId = @Model.UserId })" class="text-decoration-none text-dark">
+                <div class="card" style="width: 18rem; margin: 10px;">
+                    <img src="/api/news/@news.ArticleId/image" class="card-img-top" alt="@news.ArticleDescription image">
+                    <div class="card-body">
+                        <h5 class="card-title">@news.ArticleDescription</h5>
+                        <p class="card-text">@news.ArticleContent.Substring(0, Math.Min(100, news.ArticleContent.Length))...</p>
+                        <small class="text-muted">
+                            Published on @news.CreatedAt.ToString("dd.MM.yyyy HH:mm")
+                        </small>
+                    </div>
+                </div>
+            </a>
+        }
+    </div>
+</div>
+
+
+</div>
+
+    </div>
+    
+
     <script>
+        // JavaScript function for redirecting to CreateRecipe page
         function redirectToCreateRecipe(userId) {
             window.location.href = `/CreateRecipe/${userId}`;
         }
 
         function redirectToLogin() {
-            // Redirect the user to the login page. This will effectively log them out if the session is managed server-side.
             window.location.href = '/Login';
         }
+
+        // Fetch favourites for the logged-in user
+        async function loadFavourites() {
+            try {
+                const response = await fetch(`/api/favourites/${@Model.UserId}`);
+                const favouritesContainer = document.getElementById('favouritesContainer');
+
+                if (response.ok) {
+                    const favourites = await response.json();
+                    favouritesContainer.innerHTML = ''; // Clear existing content
+
+                    favourites.forEach(favourite => {
+                        const favouriteCard = `
+                            <a href="/RecipeDetails/${favourite.recipeId}/${@Model.UserId}" class="text-decoration-none text-dark">
+                                <div class="card" style="width: 18rem; margin: 10px;">
+                                    <img src="${favourite.recipeImageUrl}" class="card-img-top" alt="${favourite.recipeTitle} image">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${favourite.recipeTitle}</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        `;
+                        favouritesContainer.innerHTML += favouriteCard;
+                    });
+                } else if (response.status === 204) {
+                    favouritesContainer.innerHTML = '<p>No favourites found.</p>';
+                } else {
+                    console.error('Failed to fetch favourites:', await response.text());
+                }
+            } catch (error) {
+                console.error('Error fetching favourites:', error);
+            }
+        }
+
+        // Load favourites on page load
+        document.addEventListener('DOMContentLoaded', loadFavourites);
     </script>
 
     <!-- Bootstrap JS Bundle -->

@@ -3,6 +3,7 @@ using System;
 using CookingAssistantAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CookingAssistantAPI.Migrations
 {
     [DbContext(typeof(CookingAssistantDbContext))]
-    partial class CookingAssistantDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241223142106_UpdateNewsEntity")]
+    partial class UpdateNewsEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.0");
@@ -84,12 +87,13 @@ namespace CookingAssistantAPI.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<byte[]>("ArticleImage")
+                        .IsRequired()
                         .HasColumnType("BLOB");
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT")
-                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+                        .HasDefaultValueSql("GETUTCDATE()");
 
                     b.Property<string>("ImageMimeType")
                         .HasMaxLength(50)

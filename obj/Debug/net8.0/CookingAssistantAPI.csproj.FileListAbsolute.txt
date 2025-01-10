@@ -175,3 +175,4 @@
 /home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/obj/Debug/net8.0/CookingAssistantAPI.pdb
 /home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/obj/Debug/net8.0/CookingAssistantAPI.genruntimeconfig.cache
 /home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/obj/Debug/net8.0/ref/CookingAssistantAPI.dll
+/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/obj/Debug/net8.0/CookingAssistantAPI.sourcelink.json

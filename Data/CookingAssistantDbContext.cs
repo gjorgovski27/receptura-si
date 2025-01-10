@@ -13,6 +13,8 @@ namespace CookingAssistantAPI.Data
         public DbSet<Recipe> Recipes { get; set; }
         public DbSet<Rating> Ratings { get; set; }
         public DbSet<Comment> Comments { get; set; }  // Add Comments DbSet
+        public DbSet<Favourite> Favourites { get; set; }  // Add Favourites DbSet
+        public DbSet<News> News { get; set; } // Add News DbSet
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -81,6 +83,29 @@ namespace CookingAssistantAPI.Data
                 .WithOne(c => c.User)
                 .HasForeignKey(c => c.UserId)
                 .IsRequired(false);  // Comments are optional for users
+
+            // Configure relationships and constraints for Favourites
+            modelBuilder.Entity<Favourite>()
+                .HasOne(f => f.User)
+                .WithMany() // No navigation property from User to Favourites (unidirectional)
+                .HasForeignKey(f => f.UserId)
+                .OnDelete(DeleteBehavior.Cascade);  // Favourites are deleted if the associated User is deleted
+
+            modelBuilder.Entity<Favourite>()
+                .HasOne(f => f.Recipe)
+                .WithMany() // No navigation property from Recipe to Favourites (unidirectional)
+                .HasForeignKey(f => f.RecipeId)
+                .OnDelete(DeleteBehavior.Cascade);  // Favourites are deleted if the associated Recipe is deleted
+
+            // Ensure unique combination of UserId and RecipeId for favourites (each user can favourite a recipe only once)
+            modelBuilder.Entity<Favourite>()
+                .HasIndex(f => new { f.UserId, f.RecipeId })
+                .IsUnique();
+
+            // Configure News entity
+            modelBuilder.Entity<News>()
+                .Property(n => n.CreatedAt)
+                .HasDefaultValueSql("CURRENT_TIMESTAMP"); // Default value for timestamp
         }
     }
 }

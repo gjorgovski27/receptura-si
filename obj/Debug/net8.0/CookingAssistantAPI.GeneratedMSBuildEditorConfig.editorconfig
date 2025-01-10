@@ -26,8 +26,16 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI
 build_property._RazorSourceGeneratorDebug = 
 
+[/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/Pages/CreateNews.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ3JlYXRlTmV3cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/Pages/CreateRecipe.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ3JlYXRlUmVjaXBlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/Pages/Dashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRGFzaGJvYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/Pages/HomePage.cshtml]
@@ -36,6 +44,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/Pages/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/Pages/NewsDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTmV3c0RldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/Pages/RecipeDetails.cshtml]

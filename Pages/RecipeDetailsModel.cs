@@ -21,53 +21,51 @@ namespace CookingAssistantAPI.Pages
         public int RecipeId { get; set; }
 
         [BindProperty(SupportsGet = true)]
-        public int UserId { get; set; } // Get the logged-in UserId to determine access rights.
+        public int UserId { get; set; }
 
         public Recipe Recipe { get; set; } = null!;
         public double RecipeAverageRating { get; set; }
-        public bool CanDelete { get; set; } // This property will determine if the user can delete the recipe.
-        public int? UserRating { get; set; } // Stores the current user's rating for the recipe, if exists.
-        public List<Comment> RecipeComments { get; set; } = new List<Comment>(); // List to hold comments for the recipe
+        public bool CanDelete { get; set; }
+        public int? UserRating { get; set; }
+        public List<Comment> RecipeComments { get; set; } = new List<Comment>();
+        public bool IsFavourite { get; set; } // Indicates if the recipe is marked as a favourite by the user.
 
         [BindProperty]
-        public string NewCommentContent { get; set; } = string.Empty; // Property to store new comment content
+        public string NewCommentContent { get; set; } = string.Empty;
 
-        // OnGetAsync method to fetch recipe data and comments based on RecipeId
         public async Task OnGetAsync(int recipeId, int userId)
         {
             RecipeId = recipeId;
             UserId = userId;
 
-            // Fetch the recipe, including the user who created it and ratings
             Recipe = await _context.Recipes
                 .Include(r => r.CreatedByUser)
-                .Include(r => r.Ratings) // Include Ratings to fetch user-specific ratings.
+                .Include(r => r.Ratings)
                 .FirstOrDefaultAsync(r => r.RecipeId == RecipeId);
 
             if (Recipe != null)
             {
-                // Calculate the average rating of the recipe
                 RecipeAverageRating = Recipe.Ratings.Any()
                     ? Recipe.Ratings.Average(r => r.Value)
                     : 0.0;
 
-                // Determine if the logged-in user can delete this recipe
                 CanDelete = Recipe.CreatedByUserId == UserId;
 
-                // Get the user's current rating if it exists
                 var userRating = Recipe.Ratings.FirstOrDefault(r => r.UserId == UserId);
                 UserRating = userRating?.Value;
 
-                // Fetch the comments related to the recipe
                 RecipeComments = await _context.Comments
                     .Include(c => c.User)
                     .Where(c => c.RecipeId == RecipeId)
-                    .OrderByDescending(c => c.CreatedAt) // Order by latest comments first
+                    .OrderByDescending(c => c.CreatedAt)
                     .ToListAsync();
+
+                // Check if the recipe is already marked as a favourite by the user.
+                IsFavourite = await _context.Favourites
+                    .AnyAsync(f => f.RecipeId == RecipeId && f.UserId == UserId);
             }
         }
 
-        // Handle a POST request for submitting a new comment
         [HttpPost]
         public async Task<IActionResult> OnPostSubmitCommentAsync()
         {
@@ -83,7 +81,6 @@ namespace CookingAssistantAPI.Pages
                 return BadRequest("Invalid RecipeId or UserId");
             }
 
-            // Create a new comment
             var newComment = new Comment
             {
                 RecipeId = RecipeId,
@@ -98,7 +95,6 @@ namespace CookingAssistantAPI.Pages
             return RedirectToPage(new { recipeId = RecipeId, userId = UserId });
         }
 
-        // Handle a POST request for rating a recipe
         [HttpPost]
         public async Task<IActionResult> OnPostSubmitRatingAsync(int ratingValue)
         {
@@ -107,19 +103,16 @@ namespace CookingAssistantAPI.Pages
                 return BadRequest("Invalid RecipeId or UserId");
             }
 
-            // Fetch the existing rating if it exists
             var existingRating = await _context.Ratings
                 .FirstOrDefaultAsync(r => r.RecipeId == RecipeId && r.UserId == UserId);
 
             if (existingRating != null)
             {
-                // Update existing rating value
                 existingRating.Value = ratingValue;
                 _context.Ratings.Update(existingRating);
             }
             else
             {
-                // Create a new rating entry
                 var newRating = new Rating
                 {
                     RecipeId = RecipeId,
@@ -129,7 +122,38 @@ namespace CookingAssistantAPI.Pages
                 _context.Ratings.Add(newRating);
             }
 
-            // Save the changes
+            await _context.SaveChangesAsync();
+
+            return RedirectToPage(new { recipeId = RecipeId, userId = UserId });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> OnPostToggleFavouriteAsync()
+        {
+            if (RecipeId == 0 || UserId == 0)
+            {
+                return BadRequest("Invalid RecipeId or UserId");
+            }
+
+            var favourite = await _context.Favourites
+                .FirstOrDefaultAsync(f => f.RecipeId == RecipeId && f.UserId == UserId);
+
+            if (favourite != null)
+            {
+                // Remove from favourites if already marked
+                _context.Favourites.Remove(favourite);
+            }
+            else
+            {
+                // Add to favourites
+                var newFavourite = new Favourite
+                {
+                    RecipeId = RecipeId,
+                    UserId = UserId
+                };
+                _context.Favourites.Add(newFavourite);
+            }
+
             await _context.SaveChangesAsync();
 
             return RedirectToPage(new { recipeId = RecipeId, userId = UserId });
