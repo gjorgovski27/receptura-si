@@ -44,7 +44,7 @@ namespace CookingAssistantAPI.Pages
             var loginRequest = new { Email, Password };
             var content = new StringContent(JsonSerializer.Serialize(loginRequest), Encoding.UTF8, "application/json");
 
-            var response = await httpClient.PostAsync("http://localhost:5203/api/users/login", content);
+            var response = await httpClient.PostAsync("https://recepturasi.azurewebsites.net/api/users/login", content);
 
             if (response.IsSuccessStatusCode)
             {

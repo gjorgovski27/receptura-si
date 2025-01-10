@@ -22,7 +22,7 @@ builder.Services.AddDbContext<CookingAssistantDbContext>(options =>
     options.UseSqlite("Data Source=CookingAssistant.db")); // Use your SQLite connection string
 
 // Add JWT Authentication
-var jwtKey = builder.Configuration["Jwt:Key"] ?? "YourSuperSecretKey"; // Replace with a secure key
+var jwtKey = builder.Configuration["Jwt:Key"] ?? "Y2fFP9qR8sBk5xGglJvV2ZB7WlgD1U2HSkB4j3XZGs8="; // Replace with a secure key
 var jwtIssuer = builder.Configuration["Jwt:Issuer"] ?? "CookingAssistantAPI";
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

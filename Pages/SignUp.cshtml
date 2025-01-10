@@ -24,30 +24,24 @@
         </div>
         <div class="card-body">
             <form method="post" asp-page-handler="Submit">
-                <!-- Username Field -->
-                <div class="mb-3">
-                    <input type="text" id="UserName" name="UserName" class="form-control" asp-for="UserName" placeholder="Username" required />
-                </div>
-
-                <!-- Full Name Field -->
-                <div class="mb-3">
-                    <input type="text" id="FullName" name="UserFullName" class="form-control" asp-for="UserFullName" placeholder="Name" required />
-                </div>
-
-                <!-- Email Field -->
-                <div class="mb-3">
-                    <input type="email" id="Email" name="UserEmail" class="form-control" asp-for="UserEmail" placeholder="E-mail" required />
-                </div>
-
-                <!-- Password Field -->
-                <div class="mb-3">
-                    <input type="password" id="Password" name="UserPassword" class="form-control" asp-for="UserPassword" placeholder="Password" required />
-                </div>
-
-                <!-- Phone Number Field -->
-                <div class="mb-3">
-                    <input type="tel" id="Phone" name="UserPhone" class="form-control" asp-for="UserPhone" placeholder="Phone Number" required />
-                </div>
+                <form method="post">
+    <div class="mb-3">
+        <input type="text" id="UserName" name="UserName" class="form-control" placeholder="Username" required />
+    </div>
+    <div class="mb-3">
+        <input type="text" id="UserFullName" name="UserFullName" class="form-control" placeholder="Full Name" required />
+    </div>
+    <div class="mb-3">
+        <input type="email" id="UserEmail" name="UserEmail" class="form-control" placeholder="Email" required />
+    </div>
+    <div class="mb-3">
+        <input type="password" id="UserPassword" name="UserPassword" class="form-control" placeholder="Password" required />
+    </div>
+    <div class="mb-3">
+        <input type="tel" id="UserPhone" name="UserPhone" class="form-control" placeholder="Phone Number" required />
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+</form>
 
                 <!-- Sign Up Button -->
                 <button type="submit" class="btn btn-primary w-100">SIGN UP</button>

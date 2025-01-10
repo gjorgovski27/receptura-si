@@ -59,7 +59,7 @@
             createNewsButton.innerText = "Creating...";
 
             try {
-                const response = await fetch('http://localhost:5203/api/news/create', {
+                const response = await fetch('https://recepturasi.azurewebsites.net/api/news/create', {
                     method: 'POST',
                     body: formData
                 });
