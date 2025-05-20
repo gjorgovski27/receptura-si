@@ -63,15 +63,33 @@ public class LoginRequest
 }
 
         // 2. Signup Endpoint
-        [HttpPost("signup")]
+       [HttpPost("signup")]
 public async Task<IActionResult> SignUp([FromBody] UserCreateModel userModel)
 {
+    Console.WriteLine("Received Signup Request:");
+    Console.WriteLine(JsonSerializer.Serialize(userModel));
+
     if (!ModelState.IsValid)
+    {
+        Console.WriteLine("ModelState is invalid.");
+        foreach (var state in ModelState)
+        {
+            foreach (var error in state.Value.Errors)
+            {
+                Console.WriteLine($"Field: {state.Key}, Error: {error.ErrorMessage}");
+            }
+        }
         return BadRequest(ModelState);
+    }
 
     var existingUser = await _context.Users.AnyAsync(u => u.UserEmail == userModel.UserEmail);
     if (existingUser)
+    {
+        Console.WriteLine("User already exists.");
         return Conflict(new { Error = "Email is already registered." });
+    }
+
+    Console.WriteLine("User does not exist. Creating new user.");
 
     var newUser = new User
     {
@@ -84,6 +102,8 @@ public async Task<IActionResult> SignUp([FromBody] UserCreateModel userModel)
 
     _context.Users.Add(newUser);
     await _context.SaveChangesAsync();
+
+    Console.WriteLine($"User created successfully with ID {newUser.UserId}");
 
     return CreatedAtAction(nameof(SignUp), new { id = newUser.UserId }, new
     {

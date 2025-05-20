@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CookingAssistantAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ef118bb29ab4d645452b24c3d51856001f7a9308")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3e68f4f65132e13688c2d618ffdfcd8858c47158")]
 [assembly: System.Reflection.AssemblyProductAttribute("CookingAssistantAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CookingAssistantAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

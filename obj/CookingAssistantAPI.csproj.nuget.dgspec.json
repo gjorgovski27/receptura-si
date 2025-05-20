@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/CookingAssistantAPI.csproj": {}
+    "C:\\Users\\gjorg\\OneDrive\\Documents\\FRI\\RIS\\CookingAssistantAPI\\CookingAssistantAPI.csproj": {}
   },
   "projects": {
-    "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/CookingAssistantAPI.csproj": {
+    "C:\\Users\\gjorg\\OneDrive\\Documents\\FRI\\RIS\\CookingAssistantAPI\\CookingAssistantAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/CookingAssistantAPI.csproj",
+        "projectUniqueName": "C:\\Users\\gjorg\\OneDrive\\Documents\\FRI\\RIS\\CookingAssistantAPI\\CookingAssistantAPI.csproj",
         "projectName": "CookingAssistantAPI",
-        "projectPath": "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/CookingAssistantAPI.csproj",
-        "packagesPath": "/home/zeus/.nuget/packages/",
-        "outputPath": "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/obj/",
+        "projectPath": "C:\\Users\\gjorg\\OneDrive\\Documents\\FRI\\RIS\\CookingAssistantAPI\\CookingAssistantAPI.csproj",
+        "packagesPath": "C:\\Users\\gjorg\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\gjorg\\OneDrive\\Documents\\FRI\\RIS\\CookingAssistantAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/zeus/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\gjorg\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -32,6 +32,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -100,7 +105,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.110/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.409/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

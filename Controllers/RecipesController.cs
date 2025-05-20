@@ -252,5 +252,39 @@ public async Task<IActionResult> GetTopRatedRecipes()
             _logger.LogInformation($"Recipe with ID {id} deleted successfully.");
             return NoContent();
         }
+
+
+            // GET: api/recipes/search?query=pasta
+[HttpGet("search")]
+public async Task<IActionResult> SearchRecipes([FromQuery] string query)
+{
+    _logger.LogInformation($"Searching recipes with query: {query}");
+
+    if (string.IsNullOrWhiteSpace(query))
+    {
+        _logger.LogWarning("Empty search query.");
+        return NoContent(); // 204 if empty query
     }
+
+    var results = await _context.Recipes
+        .Where(r => r.Title.Contains(query) || (r.Description != null && r.Description.Contains(query)))
+        .Select(r => new
+        {
+            r.RecipeId,
+            r.Title,
+            r.Description
+        })
+        .ToListAsync();
+
+    if (results.Count == 0)
+    {
+        _logger.LogInformation("No matching recipes found.");
+        return NoContent(); // 204 if no results
+    }
+
+    _logger.LogInformation($"Found {results.Count} recipes matching query.");
+    return Ok(results);
+}
+    }
+
 }

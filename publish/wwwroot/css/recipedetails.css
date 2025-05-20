@@ -1,0 +1,307 @@
+/* General styles */
+body {
+    background: linear-gradient(to bottom, #eaf8e7, #cfe8d6);
+    font-family: 'Poppins', sans-serif;
+    color: #2e4e3f;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    margin: 30px auto;
+    padding: 30px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Header Section */
+h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #217c55;
+}
+
+.rating-section {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.rating-stars img {
+    width: 30px;
+    height: 30px;
+    margin: 0 5px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.rating-stars img:hover,
+.rating-stars img:hover ~ img {
+    transform: scale(1.2);
+    filter: brightness(1.5);
+}
+
+.rating-stars img.selected {
+    filter: brightness(1.5);
+}
+
+.rating-stars img.selected:hover {
+    transform: scale(1.2);
+}
+
+/* Recipe Image */
+.img-fluid {
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    width: 100%;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Section Headers */
+h4 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #217c55;
+    margin-top: 30px;
+}
+
+/* Lists and Text */
+p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #333;
+}
+
+ul {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #2e4e3f;
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.favourite-icon {
+    background-color: #ffffff;
+    border: 2px solid #217c55;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.favourite-icon:hover {
+    background-color: #217c55;
+}
+
+.favourite-icon .fa-heart {
+    color: #217c55;
+    font-size: 22px;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.favourite-icon:hover .fa-heart {
+    color: white;
+    transform: scale(1.2);
+}
+
+.favourite-icon.active {
+    background: linear-gradient(90deg, #7eaaff, #ff48fb);
+    border-color: transparent;
+}
+
+.favourite-icon.active .fa-heart {
+    color: white;
+}
+
+/* Comments Section */
+.comments-section {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+}
+
+.comment-item {
+    padding: 15px;
+    margin-bottom: 15px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes buttonClick {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    background: linear-gradient(90deg, #28a745, #218838);
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.notification.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.notification.error {
+    background: linear-gradient(90deg, #dc3545, #c82333);
+}
+
+/* Delete Confirmation Modal */
+.delete-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.delete-modal.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.delete-modal-content {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease;
+}
+
+.delete-modal-content h4 {
+    color: #28a745;
+    font-size: 1.25rem;
+    margin-bottom: 20px;
+}
+
+.delete-modal-content .btn {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-modal-content .btn-cancel {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+.delete-modal-content .btn-confirm {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.delete-modal-content .btn-cancel:hover {
+    background-color: #5a6268;
+}
+
+.delete-modal-content .btn-confirm:hover {
+    background-color: #218838;
+}
+
+@keyframes fadeIn {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.delete-modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.delete-modal.show {
+    display: flex;
+}
+
+.delete-modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-cancel {
+    background-color: #6c757d;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    margin: 0 10px;
+}
+
+.btn-confirm {
+    background-color: #dc3545;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    margin: 0 10px;
+}

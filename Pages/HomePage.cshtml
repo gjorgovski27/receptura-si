@@ -23,24 +23,18 @@
             <h1>Welcome, @Model.UserName!</h1>
             <div>
                 <button class="btn btn-create-recipe me-2" onclick="redirectToCreateRecipe(@Model.UserId)">Create Recipe</button>
-                <button class="btn btn-secondary me-2">Profile</button>
+                <button class="btn btn-secondary me-2" onclick="redirectToProfile(@Model.UserId)">Profile</button>
                 <button class="btn btn-logout" onclick="redirectToLogin()">
                     <img src="/images/logout_icon.svg?v=@DateTime.Now.Ticks" alt="Logout icon" /> Logout
                 </button>
             </div>
         </div>
 
-        <div class="row mt-3">
-            <!-- Search Box -->
-            <div class="col-md-6">
-                <input type="text" class="form-control" placeholder="Search recipes..." id="searchBox" />
-            </div>
+        <div class="col-md-6 position-relative">
+    <input type="text" id="liveSearchBox" class="form-control" placeholder="Search recipes..." autocomplete="off" />
+    <div id="searchDropdown" class="list-group position-absolute w-100" style="z-index: 1000;"></div>
+</div>
 
-            <!-- Pantry Button -->
-            <div class="col-md-6">
-                <button class="btn btn-warning">Pantry</button>
-            </div>
-        </div>
 
         <!-- My Recipes Section -->
 <div class="row mt-4">
@@ -122,6 +116,10 @@
             window.location.href = `/CreateRecipe/${userId}`;
         }
 
+        function redirectToProfile(userId) {
+            window.location.href = `/Profile/${userId}`;
+        }
+
         function redirectToLogin() {
             window.location.href = '/Login';
         }
@@ -161,6 +159,63 @@
 
         // Load favourites on page load
         document.addEventListener('DOMContentLoaded', loadFavourites);
+
+        const searchBox = document.getElementById('liveSearchBox');
+    const dropdown = document.getElementById('searchDropdown');
+
+    let debounceTimeout;
+
+    searchBox.addEventListener('input', () => {
+        clearTimeout(debounceTimeout);
+        const query = searchBox.value.trim();
+
+        // Delay fetch to avoid hammering server
+        debounceTimeout = setTimeout(() => {
+            if (query.length === 0) {
+                dropdown.innerHTML = '';
+                dropdown.style.display = 'none';
+                return;
+            }
+
+            fetch(`/api/recipes/search?query=${encodeURIComponent(query)}`)
+                .then(res => {
+                    if (res.status === 204) {
+                        dropdown.innerHTML = '<div class="list-group-item disabled">No results found</div>';
+                        dropdown.style.display = 'block';
+                        return [];
+                    }
+                    return res.json();
+                })
+                .then(data => {
+                    if (!Array.isArray(data)) return;
+
+                    if (data.length === 0) {
+                        dropdown.innerHTML = '<div class="list-group-item disabled">No results found</div>';
+                    } else {
+                        dropdown.innerHTML = data.map(r => `
+                            <a href="/RecipeDetails/${r.recipeId}/${@Model.UserId}" class="list-group-item list-group-item-action">
+                                ${r.title}
+                            </a>
+                        `).join('');
+                    }
+
+                    dropdown.style.display = 'block';
+                })
+                .catch(err => {
+                    console.error('Search error:', err);
+                    dropdown.innerHTML = '<div class="list-group-item disabled">Error loading results</div>';
+                    dropdown.style.display = 'block';
+                });
+        }, 300); // 300ms debounce
+    });
+
+    // Hide dropdown when clicking outside
+    document.addEventListener('click', (event) => {
+        if (!dropdown.contains(event.target) && event.target !== searchBox) {
+            dropdown.style.display = 'none';
+        }
+    });
+
     </script>
 
     <!-- Bootstrap JS Bundle -->

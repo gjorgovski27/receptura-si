@@ -1,3 +1,3 @@
 ﻿<Project>
-  <Import Project="../buildMultiTargeting/CookingAssistantAPI.props" />
+  <Import Project="..\buildMultiTargeting\CookingAssistantAPI.props" />
 </Project>

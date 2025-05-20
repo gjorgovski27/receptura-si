@@ -1,0 +1,84 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(to bottom, #eaf8e7, #75da91);
+}
+
+.app-name {
+    text-align: center;
+    font-size: 2.5rem; /* Larger font size */
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #217c55;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.card {
+    width: 400px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    background: #fff;
+    padding: 20px;
+}
+
+.card-header {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #217c55;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Updated Button Styles */
+.btn-primary {
+    background: linear-gradient(90deg, #217c55, #29a36d); /* Consistent with home page */
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    padding: 12px;
+    font-size: 1rem;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(90deg, #217c55, #29a36d);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.text-muted {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.text-muted a {
+    color: #217c55;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.text-muted a:hover {
+    color: #217c55;
+    text-decoration: underline;
+}
+
+#togglePassword {
+    font-size: 0.9rem;
+    border-radius: 0 5px 5px 0;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+#togglePassword:hover {
+    color: #fff;
+    background: linear-gradient(90deg, #217c55, #29a36d);
+}

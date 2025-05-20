@@ -1,0 +1,113 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(to bottom, #eaf8e7, #75da91);
+}
+
+.card {
+    width: 400px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    background: #fff;
+    padding: 20px;
+}
+
+.card-header {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #217c55;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.app-name {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #217c55;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+/* Updated Button Styles */
+.btn-primary {
+    background: linear-gradient(90deg, #217c55, #29a36d); /* Consistent with login page */
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    padding: 12px;
+    font-size: 1rem;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(90deg, #217c55, #29a36d);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.text-muted {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.text-muted a {
+    color: #217c55;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.text-muted a:hover {
+    color: #29a36d;
+    text-decoration: underline;
+}
+
+.form-control {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #29a36d;
+    box-shadow: 0 0 5px rgba(41, 163, 109, 0.5);
+}
+
+
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    background: linear-gradient(90deg, #28a745, #218838);
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.notification.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.notification.error {
+    background: linear-gradient(90deg, #dc3545, #c82333);
+}

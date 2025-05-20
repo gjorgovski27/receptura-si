@@ -24,24 +24,24 @@
         </div>
         <div class="card-body">
             <!-- Form begins here -->
-            <form method="post" asp-page-handler="Submit">
-                <div class="mb-3">
-                    <input type="text" id="UserName" name="UserName" class="form-control" placeholder="Username" required />
-                </div>
-                <div class="mb-3">
-                    <input type="text" id="UserFullName" name="UserFullName" class="form-control" placeholder="Full Name" required />
-                </div>
-                <div class="mb-3">
-                    <input type="email" id="UserEmail" name="UserEmail" class="form-control" placeholder="Email" required />
-                </div>
-                <div class="mb-3">
-                    <input type="password" id="UserPassword" name="UserPassword" class="form-control" placeholder="Password" required />
-                </div>
-                <div class="mb-3">
-                    <input type="tel" id="UserPhone" name="UserPhone" class="form-control" placeholder="Phone Number" required />
-                </div>
-                <button type="submit" class="btn btn-primary w-100">Sign Up</button>
-            </form>
+            <form id="signupForm">
+    <div class="mb-3">
+        <input type="text" id="UserName" name="UserName" class="form-control" placeholder="Username" required />
+    </div>
+    <div class="mb-3">
+        <input type="text" id="UserFullName" name="UserFullName" class="form-control" placeholder="Full Name" required />
+    </div>
+    <div class="mb-3">
+        <input type="email" id="UserEmail" name="UserEmail" class="form-control" placeholder="Email" required />
+    </div>
+    <div class="mb-3">
+        <input type="password" id="UserPassword" name="UserPassword" class="form-control" placeholder="Password" required />
+    </div>
+    <div class="mb-3">
+        <input type="tel" id="UserPhone" name="UserPhone" class="form-control" placeholder="Phone Number" required />
+    </div>
+    <button type="button" class="btn btn-primary w-100" onclick="submitSignup()">Sign Up</button>
+</form>
             <!-- Form ends here -->
 
             <!-- Log-In Link -->
@@ -53,5 +53,55 @@
 
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+    async function submitSignup() {
+    const formData = {
+        UserName: document.getElementById("UserName").value,
+        UserFullName: document.getElementById("UserFullName").value,
+        UserEmail: document.getElementById("UserEmail").value,
+        UserPassword: document.getElementById("UserPassword").value,
+        UserPhone: document.getElementById("UserPhone").value,
+    };
+
+    try {
+        const response = await fetch("https://recepturasi.azurewebsites.net/api/users/signup", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+        });
+
+        if (response.ok) {
+            showNotification("Signup successful!");
+            setTimeout(() => {
+                window.location.href = "/Login";
+            }, 3000); // Redirect after 3 seconds
+        } else {
+            const errorData = await response.json();
+            showNotification(`Signup failed: ${errorData.Error || "Unknown error"}`, true);
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        showNotification("An error occurred during signup. Please try again.", true);
+    }
+}
+
+    function showNotification(message, isError = false) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            if (isError) {
+                notification.classList.add('error');
+            }
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.classList.add('show'), 10);
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => notification.remove(), 300);
+            }, 4000);
+        }
+</script>
 </body>
 </html>

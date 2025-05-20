@@ -17,43 +17,47 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = CookingAssistantAPI
 build_property.RootNamespace = CookingAssistantAPI
-build_property.ProjectDir = /home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/
+build_property.ProjectDir = C:\Users\gjorg\OneDrive\Documents\FRI\RIS\CookingAssistantAPI\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI
+build_property.MSBuildProjectDirectory = C:\Users\gjorg\OneDrive\Documents\FRI\RIS\CookingAssistantAPI
 build_property._RazorSourceGeneratorDebug = 
 
-[/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/Pages/CreateNews.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ3JlYXRlTmV3cy5jc2h0bWw=
+[C:/Users/gjorg/OneDrive/Documents/FRI/RIS/CookingAssistantAPI/Pages/CreateNews.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3JlYXRlTmV3cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/Pages/CreateRecipe.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ3JlYXRlUmVjaXBlLmNzaHRtbA==
+[C:/Users/gjorg/OneDrive/Documents/FRI/RIS/CookingAssistantAPI/Pages/CreateRecipe.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3JlYXRlUmVjaXBlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/Pages/Dashboard.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRGFzaGJvYXJkLmNzaHRtbA==
+[C:/Users/gjorg/OneDrive/Documents/FRI/RIS/CookingAssistantAPI/Pages/Dashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/Pages/HomePage.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSG9tZVBhZ2UuY3NodG1s
+[C:/Users/gjorg/OneDrive/Documents/FRI/RIS/CookingAssistantAPI/Pages/HomePage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZVBhZ2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/Pages/Login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG9naW4uY3NodG1s
+[C:/Users/gjorg/OneDrive/Documents/FRI/RIS/CookingAssistantAPI/Pages/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/Pages/NewsDetails.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTmV3c0RldGFpbHMuY3NodG1s
+[C:/Users/gjorg/OneDrive/Documents/FRI/RIS/CookingAssistantAPI/Pages/NewsDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTmV3c0RldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/Pages/RecipeDetails.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUmVjaXBlRGV0YWlscy5jc2h0bWw=
+[C:/Users/gjorg/OneDrive/Documents/FRI/RIS/CookingAssistantAPI/Pages/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZmlsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/Pages/SignUp.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2lnblVwLmNzaHRtbA==
+[C:/Users/gjorg/OneDrive/Documents/FRI/RIS/CookingAssistantAPI/Pages/RecipeDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVjaXBlRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/gjorg/OneDrive/Documents/FRI/RIS/CookingAssistantAPI/Pages/SignUp.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2lnblVwLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

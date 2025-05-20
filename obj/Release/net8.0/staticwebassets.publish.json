@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "a7jk4JC44OJaBaOHv0cFzRk5fQWC5mJbrzCVIwRzhxw=",
+  "Hash": "GXactF0q1kDCxVZ2GNVcFpvEHBiTR2KeThKSoxeqUJM=",
   "Source": "CookingAssistantAPI",
   "BasePath": "_content/CookingAssistantAPI",
   "Mode": "Default",
@@ -8,19 +8,19 @@
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [
     {
-      "Name": "CookingAssistantAPI/wwwroot",
+      "Name": "CookingAssistantAPI\\wwwroot",
       "Source": "CookingAssistantAPI",
-      "ContentRoot": "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/wwwroot/",
+      "ContentRoot": "C:\\Users\\gjorg\\OneDrive\\Documents\\FRI\\RIS\\CookingAssistantAPI\\wwwroot\\",
       "BasePath": "_content/CookingAssistantAPI",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/wwwroot/css/createnews.css",
+      "Identity": "C:\\Users\\gjorg\\OneDrive\\Documents\\FRI\\RIS\\CookingAssistantAPI\\wwwroot\\css\\createnews.css",
       "SourceId": "CookingAssistantAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/wwwroot/",
+      "ContentRoot": "C:\\Users\\gjorg\\OneDrive\\Documents\\FRI\\RIS\\CookingAssistantAPI\\wwwroot\\",
       "BasePath": "_content/CookingAssistantAPI",
       "RelativePath": "css/createnews.css",
       "AssetKind": "All",
@@ -33,13 +33,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/css/createnews.css"
+      "OriginalItemSpec": "wwwroot\\css\\createnews.css"
     },
     {
-      "Identity": "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/wwwroot/css/createrecipe.css",
+      "Identity": "C:\\Users\\gjorg\\OneDrive\\Documents\\FRI\\RIS\\CookingAssistantAPI\\wwwroot\\css\\createrecipe.css",
       "SourceId": "CookingAssistantAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/wwwroot/",
+      "ContentRoot": "C:\\Users\\gjorg\\OneDrive\\Documents\\FRI\\RIS\\CookingAssistantAPI\\wwwroot\\",
       "BasePath": "_content/CookingAssistantAPI",
       "RelativePath": "css/createrecipe.css",
       "AssetKind": "All",
@@ -52,13 +52,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/css/createrecipe.css"
+      "OriginalItemSpec": "wwwroot\\css\\createrecipe.css"
     },
     {
-      "Identity": "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/wwwroot/css/dashboard.css",
+      "Identity": "C:\\Users\\gjorg\\OneDrive\\Documents\\FRI\\RIS\\CookingAssistantAPI\\wwwroot\\css\\dashboard.css",
       "SourceId": "CookingAssistantAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/wwwroot/",
+      "ContentRoot": "C:\\Users\\gjorg\\OneDrive\\Documents\\FRI\\RIS\\CookingAssistantAPI\\wwwroot\\",
       "BasePath": "_content/CookingAssistantAPI",
       "RelativePath": "css/dashboard.css",
       "AssetKind": "All",
@@ -71,13 +71,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/css/dashboard.css"
+      "OriginalItemSpec": "wwwroot\\css\\dashboard.css"
     },
     {
-      "Identity": "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/wwwroot/css/home.css",
+      "Identity": "C:\\Users\\gjorg\\OneDrive\\Documents\\FRI\\RIS\\CookingAssistantAPI\\wwwroot\\css\\home.css",
       "SourceId": "CookingAssistantAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/wwwroot/",
+      "ContentRoot": "C:\\Users\\gjorg\\OneDrive\\Documents\\FRI\\RIS\\CookingAssistantAPI\\wwwroot\\",
       "BasePath": "_content/CookingAssistantAPI",
       "RelativePath": "css/home.css",
       "AssetKind": "All",
@@ -90,13 +90,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/css/home.css"
+      "OriginalItemSpec": "wwwroot\\css\\home.css"
     },
     {
-      "Identity": "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/wwwroot/css/login.css",
+      "Identity": "C:\\Users\\gjorg\\OneDrive\\Documents\\FRI\\RIS\\CookingAssistantAPI\\wwwroot\\css\\login.css",
       "SourceId": "CookingAssistantAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/wwwroot/",
+      "ContentRoot": "C:\\Users\\gjorg\\OneDrive\\Documents\\FRI\\RIS\\CookingAssistantAPI\\wwwroot\\",
       "BasePath": "_content/CookingAssistantAPI",
       "RelativePath": "css/login.css",
       "AssetKind": "All",
@@ -109,13 +109,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/css/login.css"
+      "OriginalItemSpec": "wwwroot\\css\\login.css"
     },
     {
-      "Identity": "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/wwwroot/css/newsdetails.css",
+      "Identity": "C:\\Users\\gjorg\\OneDrive\\Documents\\FRI\\RIS\\CookingAssistantAPI\\wwwroot\\css\\newsdetails.css",
       "SourceId": "CookingAssistantAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/wwwroot/",
+      "ContentRoot": "C:\\Users\\gjorg\\OneDrive\\Documents\\FRI\\RIS\\CookingAssistantAPI\\wwwroot\\",
       "BasePath": "_content/CookingAssistantAPI",
       "RelativePath": "css/newsdetails.css",
       "AssetKind": "All",
@@ -128,13 +128,32 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/css/newsdetails.css"
+      "OriginalItemSpec": "wwwroot\\css\\newsdetails.css"
     },
     {
-      "Identity": "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/wwwroot/css/recipedetails.css",
+      "Identity": "C:\\Users\\gjorg\\OneDrive\\Documents\\FRI\\RIS\\CookingAssistantAPI\\wwwroot\\css\\profile.css",
       "SourceId": "CookingAssistantAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/wwwroot/",
+      "ContentRoot": "C:\\Users\\gjorg\\OneDrive\\Documents\\FRI\\RIS\\CookingAssistantAPI\\wwwroot\\",
+      "BasePath": "_content/CookingAssistantAPI",
+      "RelativePath": "css/profile.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\profile.css"
+    },
+    {
+      "Identity": "C:\\Users\\gjorg\\OneDrive\\Documents\\FRI\\RIS\\CookingAssistantAPI\\wwwroot\\css\\recipedetails.css",
+      "SourceId": "CookingAssistantAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\gjorg\\OneDrive\\Documents\\FRI\\RIS\\CookingAssistantAPI\\wwwroot\\",
       "BasePath": "_content/CookingAssistantAPI",
       "RelativePath": "css/recipedetails.css",
       "AssetKind": "All",
@@ -147,13 +166,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/css/recipedetails.css"
+      "OriginalItemSpec": "wwwroot\\css\\recipedetails.css"
     },
     {
-      "Identity": "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/wwwroot/css/signup.css",
+      "Identity": "C:\\Users\\gjorg\\OneDrive\\Documents\\FRI\\RIS\\CookingAssistantAPI\\wwwroot\\css\\signup.css",
       "SourceId": "CookingAssistantAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/wwwroot/",
+      "ContentRoot": "C:\\Users\\gjorg\\OneDrive\\Documents\\FRI\\RIS\\CookingAssistantAPI\\wwwroot\\",
       "BasePath": "_content/CookingAssistantAPI",
       "RelativePath": "css/signup.css",
       "AssetKind": "All",
@@ -166,13 +185,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/css/signup.css"
+      "OriginalItemSpec": "wwwroot\\css\\signup.css"
     },
     {
-      "Identity": "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/wwwroot/images/logout_icon.svg",
+      "Identity": "C:\\Users\\gjorg\\OneDrive\\Documents\\FRI\\RIS\\CookingAssistantAPI\\wwwroot\\images\\logout_icon.svg",
       "SourceId": "CookingAssistantAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/wwwroot/",
+      "ContentRoot": "C:\\Users\\gjorg\\OneDrive\\Documents\\FRI\\RIS\\CookingAssistantAPI\\wwwroot\\",
       "BasePath": "_content/CookingAssistantAPI",
       "RelativePath": "images/logout_icon.svg",
       "AssetKind": "All",
@@ -185,13 +204,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/images/logout_icon.svg"
+      "OriginalItemSpec": "wwwroot\\images\\logout_icon.svg"
     },
     {
-      "Identity": "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/wwwroot/images/star_unused.svg",
+      "Identity": "C:\\Users\\gjorg\\OneDrive\\Documents\\FRI\\RIS\\CookingAssistantAPI\\wwwroot\\images\\star_unused.svg",
       "SourceId": "CookingAssistantAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/wwwroot/",
+      "ContentRoot": "C:\\Users\\gjorg\\OneDrive\\Documents\\FRI\\RIS\\CookingAssistantAPI\\wwwroot\\",
       "BasePath": "_content/CookingAssistantAPI",
       "RelativePath": "images/star_unused.svg",
       "AssetKind": "All",
@@ -204,13 +223,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/images/star_unused.svg"
+      "OriginalItemSpec": "wwwroot\\images\\star_unused.svg"
     },
     {
-      "Identity": "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/wwwroot/images/star_used.svg",
+      "Identity": "C:\\Users\\gjorg\\OneDrive\\Documents\\FRI\\RIS\\CookingAssistantAPI\\wwwroot\\images\\star_used.svg",
       "SourceId": "CookingAssistantAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/zeus/Documents/FRI_2_Letnik/IS/CookingAssistantAPI/wwwroot/",
+      "ContentRoot": "C:\\Users\\gjorg\\OneDrive\\Documents\\FRI\\RIS\\CookingAssistantAPI\\wwwroot\\",
       "BasePath": "_content/CookingAssistantAPI",
       "RelativePath": "images/star_used.svg",
       "AssetKind": "All",
@@ -223,7 +242,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/images/star_used.svg"
+      "OriginalItemSpec": "wwwroot\\images\\star_used.svg"
     }
   ]
 }

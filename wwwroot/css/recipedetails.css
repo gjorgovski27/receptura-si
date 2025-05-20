@@ -83,23 +83,41 @@ ul {
     padding-left: 20px;
 }
 
-/* Favourites Button */
-.favourite-btn {
-    background: linear-gradient(90deg, #7eaaff, #ff48fb);
-    border: none;
+.favourite-icon {
+    background-color: #ffffff;
+    border: 2px solid #217c55;
     border-radius: 50%;
     width: 50px;
     height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-.favourite-btn:hover {
-    transform: scale(1.1);
-    background: linear-gradient(90deg, #6d9cf8, #fa3ef4);
+.favourite-icon:hover {
+    background-color: #217c55;
+}
+
+.favourite-icon .fa-heart {
+    color: #217c55;
+    font-size: 22px;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.favourite-icon:hover .fa-heart {
+    color: white;
+    transform: scale(1.2);
+}
+
+.favourite-icon.active {
+    background: linear-gradient(90deg, #7eaaff, #ff48fb);
+    border-color: transparent;
+}
+
+.favourite-icon.active .fa-heart {
+    color: white;
 }
 
 /* Comments Section */

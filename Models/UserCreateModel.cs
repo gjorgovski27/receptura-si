@@ -19,7 +19,7 @@ namespace CookingAssistantAPI.Models
         [Required]
         public string UserPassword { get; set; } = string.Empty;
 
-        [Phone]
+        [RegularExpression(@"^\d+$", ErrorMessage = "Phone number must contain only digits.")]
         public string UserPhone { get; set; } = string.Empty;
     }
 }
